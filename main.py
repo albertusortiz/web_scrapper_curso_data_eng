@@ -18,7 +18,7 @@ if __name__ == '__main__':
     parser.add_argument('news_site',
                         help='The news site that you want to scrape',
                         type=str,
-                        choices=new_site_choices)
+                        choices=news_site_choices)
     
-    args = parser.parse_arg()
+    args = parser.parse_args()
     _news_scraper(args.news_site)
