@@ -8,6 +8,7 @@ from common import config
 
 logger = logging.getLogger(__name__)
 is_well_formed_link = re.compile(r'^https://.+/.+$') #https://example.com/hello
+is_root_path = re.compiler(r'^/.+$') # /some-text
 
 def _news_scraper(news_site_uid):
     host = config()['news_sites'][news_site_uid]['url']
