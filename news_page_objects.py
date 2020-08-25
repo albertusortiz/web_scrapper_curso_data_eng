@@ -36,3 +36,7 @@ class HomePage(NewsPage): #Esta clase va a representar la pagina principal de nu
 
         return set(link['href'] for link in link_list)
 
+class ArticlePage(NewsPage):
+
+    def __init__(self, news_site_uid, url):
+        super().__init__(news_site_uid, url)
