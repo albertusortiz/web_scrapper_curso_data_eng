@@ -12,6 +12,18 @@ class HomePage: #Esta clase va a representar la pagina principal de nuestra web
 
         self._visit(url)
 
+    @property
+    def article_links(self):
+        link_list = []
+        for link in self._select(self._queries['homepage_article_links']):
+            if link and link.has_attr('href'):
+                link_list.append(link)
+
+        return self(link['href'] for link in link_list)
+
+    def _select(self, query_string):
+        return self._html.select(query_string)
+
     def _visit(self, url):
         response = requests.get(url)
 
