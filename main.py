@@ -16,8 +16,16 @@ def _news_scraper(news_site_uid):
     logging.info('Beginning scraper for {}'.format(host))
     homepage = news.HomePage(news_site_uid, host)
 
+    articles = []
     for link in homepage.article_links:
         article = _fetch_article(news_site_uid, host, link)
+
+        if article:
+            logger.info('Article fetched!!!')
+            articles.append(article)
+            print(article.title)
+
+    print(len(article))
 
 def _fetch_article(news_site_uid, host, link):
     logger.info('Start fetching article at {}'.format(link))
@@ -25,8 +33,14 @@ def _fetch_article(news_site_uid, host, link):
     article = None
     try:
         article = news.ArticlePage(news_site_uid, _build_link(host, link))
-    except:
-        pass
+    except (HTTPError, MaxRetryError) as e:
+        logger.warning('Error while fechting the article', exc_info=False)
+
+    if article and not article.body:
+        logger.warning('Invalid article. There is no body')
+        return None
+
+    return article
 
 def _build_link(host, link):
     if is_well_formed_link.match(link):
