@@ -19,7 +19,7 @@ class HomePage: #Esta clase va a representar la pagina principal de nuestra web
             if link and link.has_attr('href'):
                 link_list.append(link)
 
-        return self(link['href'] for link in link_list)
+        return set(link['href'] for link in link_list)
 
     def _select(self, query_string):
         return self._html.select(query_string)

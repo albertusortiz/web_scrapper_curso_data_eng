@@ -2,8 +2,8 @@ news_sites:
         eluniversal:
                 url: http://www.eluniversal.com.mx
                 queries: #Agregando querys
-                        homepage_article_links = '.field-content a'
+                        homepage_article_links: '.field-content a'
         elpais:
                 url: https://elpais.com
                 queries: #Agregando querys
-                        homepage_article_links = ''
+                        homepage_article_links: ''
